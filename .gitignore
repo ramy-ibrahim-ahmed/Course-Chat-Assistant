@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+# MINE
+data/
+database/
+assets/
+
 # Distribution / packaging
 .Python
 build/
