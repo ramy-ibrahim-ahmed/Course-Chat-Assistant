@@ -1,4 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from contextlib import asynccontextmanager
 
 from .config import get_settings
@@ -49,3 +51,11 @@ app = FastAPI(
 app.include_router(DataRouter.router)
 app.include_router(StoresRouter.router)
 app.include_router(BotRouter.router)
+
+app.mount("/static", StaticFiles(directory="src/views/static"), name="static")
+templates = Jinja2Templates(directory="src/views/templates")
+
+
+@app.get("/")
+async def serve_home(request: Request):
+    return templates.TemplateResponse("chat.html", {"request": request})

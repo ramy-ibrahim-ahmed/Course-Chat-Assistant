@@ -68,9 +68,6 @@ async def chunk(request: Request, course_name: str, chunk_request: ChunkRequest)
     vdb = request.app.vdb
 
     try:
-        if chunk_request.do_reset:
-            vdb.create_collection(collection_name=course_name, do_reset=True)
-
         embeddings = llm.embed_text(chunks)
         vdb.insert_documents(
             collection_name=course_name,

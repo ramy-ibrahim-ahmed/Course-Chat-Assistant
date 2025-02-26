@@ -10,6 +10,7 @@ __pycache__/
 data/
 database/
 assets/
+src/views
 
 # Distribution / packaging
 .Python
